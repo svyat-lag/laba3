@@ -50,23 +50,15 @@ public class AStarState
         Iterator<Map.Entry<Location, Waypoint>> iterator = openList.entrySet().iterator();
         Map.Entry<Location, Waypoint> firstValue = iterator.next();
 
-        float minimalCoast = firstValue.getValue().getPreviousCost();
+        float minimalCoast = firstValue.getValue().getTotalCost();
         Waypoint cheapestWaypoint = firstValue.getValue();
 
         for (Waypoint currentWaypoint:openList.values()){
-            if (currentWaypoint.getPreviousCost() < minimalCoast){
-                minimalCoast = currentWaypoint.getPreviousCost();
+            if (currentWaypoint.getTotalCost() < minimalCoast){
+                minimalCoast = currentWaypoint.getTotalCost();
                 cheapestWaypoint = currentWaypoint;
             }
         }
-//        Map.Entry<Location, Waypoint> cheapestWaypoint = firstValue;
-//
-//        for (Map.Entry<Location, Waypoint> item: openList.entrySet()) {
-//            if (item.getValue().getPreviousCost() < minimalCoast){
-//                minimalCoast = item.getValue().getPreviousCost();
-//                cheapestWaypoint = item;
-//            }
-//        }
 
         return cheapestWaypoint;
     }
